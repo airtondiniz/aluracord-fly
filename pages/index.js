@@ -9,10 +9,13 @@ function GlobalStyle() {
       * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+        
       }
 
       body {
         font-family: sans-serif;
+
       }
     `}</style>
   );
@@ -33,6 +36,10 @@ function Titulo(props) {
     </>
   );
 }
+
+
+
+
 
 /* function HomePage() {
     return (
@@ -69,10 +76,14 @@ export default function PaginaInicial() {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"
            /* backgroundBlendMode: 'multiply', */,
+           height: '100vh',
+           width: '100vw',
+           position: 'relative',
         }}
       >
-        <Box
+        <Box className="telalogin"
           styleSheet={{
+            
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -85,8 +96,10 @@ export default function PaginaInicial() {
             borderRadius: "5px",
             padding: "32px",
             margin: "16px",
-            boxShadow: "0 2px 10px 0 rgb(0 0 0 / 20%)",
+            boxShadow: "0 2px 10px 0 rgb(27 102 121 / 70%)",
             backgroundColor: appConfig.theme.colors.neutrals[700],
+            opacity:'0.9',
+            
           }}
         >
           {/* Formulário */}
@@ -114,26 +127,32 @@ export default function PaginaInicial() {
             </Text>
 
             <TextField
+              placeholder="Usuário do GitHub"   
               fullWidth
               textFieldColors={{
                 neutral: {
-                  textColor: appConfig.theme.colors.neutrals[200],
-                  mainColor: appConfig.theme.colors.neutrals[900],
-                  mainColorHighlight: appConfig.theme.colors.primary[500],
-                  backgroundColor: appConfig.theme.colors.neutrals[800],
+                  textColor: appConfig.theme.colors.neutrals[200],/* texto */
+                  mainColor: appConfig.theme.colors.neutrals[400],/* bordainativa */
+                  mainColorHighlight: appConfig.theme.colors.primary[200],/* cor da borda */
+                  backgroundColor: appConfig.theme.colors.neutrals[800],/* fundo */
                 },
               }}
             />
+            
             <Button
+              styleSheet={{
+                fontSize: '200px',
+              }}
               type="submit"
               label="Entrar"
               fullWidth
               buttonColors={{
-                contrastColor: appConfig.theme.colors.neutrals["000"],
+                contrastColor: appConfig.theme.colors.neutrals["999"],
                 mainColor: appConfig.theme.colors.primary[500],
                 mainColorLight: appConfig.theme.colors.primary[400],
                 mainColorStrong: appConfig.theme.colors.primary[600],
               }}
+              
             />
           </Box>
           {/* Formulário */}
@@ -152,6 +171,7 @@ export default function PaginaInicial() {
               borderRadius: "10px",
               flex: 1,
               minHeight: "240px",
+              
             }}
           >
             <Image
