@@ -3,24 +3,6 @@ import appConfig from "../config.json";
 import React from "react";
 import { useRouter } from "next/router";
 
-function GlobalStyle() {
-  return (
-    <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        
-      }
-
-      body {
-        font-family: sans-serif;
-
-      }
-    `}</style>
-  );
-}
-
 function Titulo(props) {
   const Tag = props.tag || "h1";
   return (
@@ -36,10 +18,6 @@ function Titulo(props) {
     </>
   );
 }
-
-
-
-
 
 /* function HomePage() {
     return (
@@ -60,30 +38,31 @@ function Titulo(props) {
   export default HomePage */
 
 export default function PaginaInicial() {
-  const username = "airtondiniz";
+  /* const username = "airtondiniz"; */
+  const [username, setUsername] = React.useState("");
+  const roteamento = useRouter();
+  const [image, setImage] = React.useState(
+    `https://github.com/${username}.png`
+  );
 
   return (
     <>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           /* backgroundColor: appConfig.theme.colors.primary[500], */
-          backgroundImage:
-            "url(https://files.fm/thumb_show.php?i=2yghg3dhh)",
+          backgroundImage: "url(https://files.fm/thumb_show.php?i=2yghg3dhh)",
           backgroundRepeat: "no-repeat",
-          backgroundSize: "cover"
-           /* backgroundBlendMode: 'multiply', */,
-           height: '100vh',
-           width: '100vw',
-           position: 'relative',
+          backgroundSize: "cover",
+          /* backgroundBlendMode: 'multiply', */ height: "100vh",
+          width: "100vw",
+          position: "relative",
         }}
       >
-        <Box className="telalogin"
+        <Box
           styleSheet={{
-            
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -98,13 +77,16 @@ export default function PaginaInicial() {
             margin: "16px",
             boxShadow: "0 2px 10px 0 rgb(27 102 121 / 70%)",
             backgroundColor: appConfig.theme.colors.neutrals[700],
-            opacity:'0.9',
-            
+            opacity: "0.9",
           }}
         >
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit={function (event) {
+              event.preventDefault();
+              roteamento.push("/chat");
+            }}
             styleSheet={{
               display: "flex",
               flexDirection: "column",
@@ -126,33 +108,51 @@ export default function PaginaInicial() {
               {appConfig.name}
             </Text>
 
+            {/* <input 
+              type="text"
+              value={username}
+              onChange={function (event) {
+                const valor = event.target.value;
+                setUsername(valor);
+              }}
+              /> */}
+
             <TextField
-              placeholder="Usuário do GitHub"   
+              placeholder="Usuário do GitHub"
               fullWidth
               textFieldColors={{
                 neutral: {
-                  textColor: appConfig.theme.colors.neutrals[200],/* texto */
-                  mainColor: appConfig.theme.colors.neutrals[400],/* bordainativa */
-                  mainColorHighlight: appConfig.theme.colors.primary[200],/* cor da borda */
-                  backgroundColor: appConfig.theme.colors.neutrals[800],/* fundo */
+                  textColor: appConfig.theme.colors.neutrals[200],
+                  mainColor: appConfig.theme.colors.neutrals[400],
+                  mainColorHighlight: appConfig.theme.colors.primary[200],
+                  backgroundColor: appConfig.theme.colors.neutrals[800],
                 },
               }}
-            />
-            
-            <Button
-              styleSheet={{
-                fontSize: '200px',
+              value={username}
+              onChange={function handler(event) {
+                const valor = event.target.value;
+
+                setUsername(valor);
+                if (valor.length >= 3) {
+                  setImage(`https://github.com/${valor}.png`);
+                } else {
+                  setImage(
+                    `https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg`
+                  );
+                }
               }}
+            />
+
+            <Button
               type="submit"
               label="Entrar"
               fullWidth
               buttonColors={{
-                contrastColor: appConfig.theme.colors.neutrals["999"],
+                contrastColor: appConfig.theme.colors.neutrals[999],
                 mainColor: appConfig.theme.colors.primary[500],
-                mainColorLight: appConfig.theme.colors.primary[400],
-                mainColorStrong: appConfig.theme.colors.primary[600],
+                mainColorLight: appConfig.theme.colors.primary[600],
+                mainColorStrong: appConfig.theme.colors.primary[400],
               }}
-              
             />
           </Box>
           {/* Formulário */}
@@ -171,7 +171,6 @@ export default function PaginaInicial() {
               borderRadius: "10px",
               flex: 1,
               minHeight: "240px",
-              
             }}
           >
             <Image
@@ -179,7 +178,7 @@ export default function PaginaInicial() {
                 borderRadius: "50%",
                 marginBottom: "16px",
               }}
-              src={`https://github.com/${username}.png`}
+              src={`${image}`}
             />
             <Text
               variant="body4"
