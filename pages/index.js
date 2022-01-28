@@ -53,7 +53,7 @@ export default function PaginaInicial() {
           alignItems: "center",
           justifyContent: "center",
           /* backgroundColor: appConfig.theme.colors.primary[500], */
-          backgroundImage: "url(https://files.fm/thumb_show.php?i=2yghg3dhh)",
+          backgroundImage: "url(https://www.mnrubber.com/wp-content/uploads/2020/11/network-3357642_1280.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           /* backgroundBlendMode: 'multiply', */ height: "100vh",
