@@ -53,10 +53,12 @@ export default function PaginaInicial() {
           alignItems: "center",
           justifyContent: "center",
           /* backgroundColor: appConfig.theme.colors.primary[500], */
-          backgroundImage: "url(https://www.mnrubber.com/wp-content/uploads/2020/11/network-3357642_1280.jpg)",
+          backgroundImage:
+            "url(https://www.mnrubber.com/wp-content/uploads/2020/11/network-3357642_1280.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          /* backgroundBlendMode: 'multiply', */ height: "100vh",
+          /* backgroundBlendMode: 'multiply', */
+          height: "100vh",
           width: "100vw",
           position: "relative",
         }}
@@ -85,7 +87,7 @@ export default function PaginaInicial() {
             as="form"
             onSubmit={function (event) {
               event.preventDefault();
-              roteamento.push("/chat");
+              roteamento.push(`/chat?username=${username}`);
             }}
             styleSheet={{
               display: "flex",
